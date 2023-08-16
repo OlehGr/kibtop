@@ -1,50 +1,74 @@
-# Сonfiguration API
+# Сonfiguration Project for "Test Product Built (with server connection through Wireguard)"
+
+## Сonfiguration Django API
 Сreate file **.env** path **services/backend** \
 Full path - **services/backend/.env**
 ```
-# WEB SITE SETTINGS
-SECRET_KEY=
-POSTGRES_HOST=
-POSTGRES_DB=
-POSTGRES_USER=
-POSTGRES_PASSWORD=
-POSTGRES_PORT=
+SECRET_KEY=django-insecure-vb)gz!fyub+2#m0v%nrjjxwbmk@&-^g*m3ayusu1va*@7nc=-0
+DJANGO_SETTINGS_MODULE='settings.settings'
+POSTGRES_HOST=postgresql
+POSTGRES_DB=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=pvlsazrmhjejwthkvrhlncwxuk
+POSTGRES_PORT=5432
+REDIS_URL="redis://redis:6379/0"
 
 # SOCIAL SETTINGS
-URL=
-SOCIAL_SECRET=
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
+URL=https://kibtop-api.olehgr.site
+SOCIAL_SECRET=301749986500-7om8alf4e578d7qr
+
+GOOGLE_CLIENT_ID=871422155316-9nm0epdi3l85gb301j2djr8agnrncgsn.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
 
 # EMAIL CREDENTIALS
-EMAIL_HOST=
-EMAIL_PORT=
-EMAIL_HOST_USER=
-EMAIL_HOST_PASSWORD=
+EMAIL_HOST=amsterdam.smtp.bz
+EMAIL_PORT=465
+EMAIL_HOST_USER=info@kibtop.com
+EMAIL_HOST_PASSWORD=9j0drwBK9wGW
 ```
 
-Get data on request **@gangfv**
+## Сonfiguration Next.js Client
+Сreate file **.env** path **services/frontend** \
+Full path - **services/frontend/.env**
+```
+GOOGLE_CLIENT_ID=871422155316-9nm0epdi3l85gb301j2djr8agnrncgsn.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
 
-# Launching API
+FACEBOOK_CLIENT_ID=701881914838681
+FACEBOOK_CLIENT_SECRET=c19cb4c04e28a17e1e81a5333bdf5372
+
+JWT_SECRET=b330938c7d540642dce9896a099dffb8
+
+NEXT_PUBLIC_MAP_API_KEY=AIzaSyCXmFZqU8q2Y1CLRKDne0UjXdfkfxCxOJ4
+
+NEXT_PUBLIC_DOMAIN=kibtop.olehgr.site
+NEXT_PUBLIC_API_DOMAIN=kibtop-api.olehgr.site
+NEXTAUTH_URL=https://kibtop.olehgr.site
+NEXT_PUBLIC_WEBSOCKET_URL=wss://kibtop-api.olehgr.site
+
+NEXT_PUBLIC_IS_DEPLOY=1
+```
+
+
+# Launching Project
 
 ```
-cd services/backend
+cd ./services
 docker compose up --build
 ```
 
 **Api links:** 
 
-Swagger - http://127.0.0.1:8000/api/v1/docs/ 
+Swagger - https://kibtop-api.olehgr.site/api/docs/ 
 
 ![img.png](readme_img/img.png)
 
-Redoc - http://127.0.0.1:8000/api/v1/docs/redoc/
+Redoc - https://kibtop-api.olehgr.sit/api/docs/redoc/
 
 ![img_1.png](readme_img/img_1.png)
 
-**Admin link** \
-Django Admin - http://127.0.0.1:8000/admin/
-![img_2.png](readme_img/img_3.png)
+**Client links:** \
+Main page - https://kibtop-api.olehgr.site
 
 **Creating Admin user**
 ```
@@ -52,72 +76,10 @@ docker ps
 ```
 ```
 # Сonclusion ...
-<id container react>    frontend-react  "docker-entrypoint.s…"   1 minutes ago   Up 1 minutes   0.0.0.0:3000->3000/tcp   react
-<id container postgres> postgres        "docker-entrypoint.s…"   1 minutes ago   Up 1 minutes   0.0.0.0:5432->5432/tcp   backend-postgresql-1
-<id container api>      backend-api     "sh -c ' python mana…"   1 minutes ago   Up 1 minutes   0.0.0.0:8000->8000/tcp   api
+...
+<id container api>      backend     "sh -c ' python mana…"   1 minutes ago   Up 1 minutes   0.0.0.0:8000->8000/tcp   api
+...
 ```
 ```
 docker exec -ti <id container api> python manage.py createsuperuser
-```
-```
-# Сonclusion ...
-Username: admin # The input is displayed (user by default 'admin')
-Email: admin@admin.com # The input is displayed (email by default 'admin@admin.com')
-Password: # The input is not displayed (default password is '1234')
-Password (again): # The input is not displayed (default password is '1234')
-This password is too short. It must contain at least 8 characters.
-This password is too common.
-This password is entirely numeric.
-Bypass password validation and create user anyway? [y/N]: y # <- Important 
-Superuser created successfully.
-
-```
-
-# Сonfiguration API Admin
-**Change sites**
-
-![img4.png](readme_img/img4.png)
-
-# Launching React
-
-```
-cd services/frontend
-docker compose up --build
-```
-
-**React link** - http://127.0.0.1:3000/
-
-# Настройте репозиторий
-Обновите индекс ```apt``` пакета и установите пакеты, чтобы разрешить ```apt``` использование репозитория по протоколу HTTPS:
-```
-apt-get update
-```
-```
-apt-get install -y \
-  ca-certificates \
-  curl \
-  gnupg \
-  lsb-release
-```
-Добавьте официальный GPG-ключ Docker:
-```
-mkdir -p /etc/apt/keyrings
-```
-```
-curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-```
-Используйте следующую команду для настройки репозитория:
-```
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-  $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
-# Установить движок Docker
-Обновите индекс ```apt``` пакета и установите последнюю версию Docker Engine, containerd и Docker Compose или перейдите к следующему шагу, чтобы установить конкретную версию:
-```
-apt-get update
-```
-Установите Docker Engine
-```
-apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```

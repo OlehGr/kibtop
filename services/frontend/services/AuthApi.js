@@ -25,6 +25,7 @@ export const AuthApi = {
             {
                 refresh
             }).then(res => {
+                console.log(res.data);
                 return res.data.access
             })
     },

@@ -62,13 +62,13 @@ const AddressField = ({isLoaded}) => {
     return (
         <>
             <input {...register('geocode', {
-                    required: t('field is required')
+                    // required: t('field is required') // Затычка из-за отсутствия доступа к гугл картам
                 })} type="text" hidden={true} />
             <input {...register('address', {
-                    required: t('field is required')
+                    // required: t('field is required')
                 })} type="text" hidden={true} />
             <input {...register('city', {
-                    required: t('field is required')
+                    // required: t('field is required')
                 })} type="text" hidden={true} />
 
             <div className="radio-group" ref={ref}>

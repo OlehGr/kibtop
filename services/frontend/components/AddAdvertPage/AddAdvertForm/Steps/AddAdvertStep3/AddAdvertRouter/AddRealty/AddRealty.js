@@ -132,7 +132,7 @@ const AddRealty = () => {
                 </label>
 
                 <ServiceSets requiredFields={['title', 
-                                                    'address',
+                                                    'address', 
                                                     'categoryName', 
                                                     'condition',
                                                     'city', 
@@ -169,11 +169,11 @@ const AddRealty = () => {
             </div>
 
             <SubmitButtonContainer requiredFields={['title', 
-                                                    'address',
+                                                    // 'address',
                                                     'categoryName', 
                                                     'condition',
-                                                    'city', 
-                                                    'geocode', 
+                                                    // 'city', 
+                                                    // 'geocode', 
                                                     'cost', 
                                                     'description', 
                                                     'currency', 
@@ -184,11 +184,11 @@ const AddRealty = () => {
                                                     ]} />
 
             <NextButtonContainer    requiredFields={['title', 
-                                                    'address',
+                                                    // 'address', // Затычка из-за отсутствия доступа к гугл картам
                                                     'categoryName', 
                                                     'condition',
-                                                    'city', 
-                                                    'geocode', 
+                                                    // 'city', 
+                                                    // 'geocode', 
                                                     'cost', 
                                                     'description', 
                                                     'currency', 

@@ -2,13 +2,15 @@ from datetime import timedelta
 from pathlib import Path
 import environ
 
+import django
+
 env = environ.Env()
 environ.Env.read_env('.env')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', 'api.kibtop.com', '94.250.251.138', 'backend']
+ALLOWED_HOSTS = ['127.0.0.1', 'api.kibtop.com', '94.250.251.138', 'backend', 'localhost', '194.31.175.133', '10.0.0.2', 'kibtop-api.olehgr.site']
 BASE_URL = env("URL")
 
 INSTALLED_APPS = [
@@ -55,14 +57,16 @@ MIDDLEWARE = [
 
 CSRF_TRUSTED_ORIGINS = [
     'https://api.kibtop.com',
-    'http://94.250.251.138:8000'
+    'http://94.250.251.138:8000',
+    'https://kibtop-api.olehgr.site'
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'https://kibtop.com',
-]
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:3000',
+#     'http://localhost',
+#     'https://kibtop.com',
+# ]
 
 ROOT_URLCONF = 'settings.urls'
 
@@ -82,37 +86,37 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'settings.wsgi.application'
+# WSGI_APPLICATION = 'settings.wsgi.application'
 ASGI_APPLICATION = 'settings.asgi.application'
 
 CHANNEL_LAYERS = {
     "default": {
-        # "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "BACKEND": "channels.layers.InMemoryChannelLayer",
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        # "BACKEND": "channels.layers.InMemoryChannelLayer",
 
-        # "CONFIG": {
-        #     "hosts": [env("REDIS_URL")],
-        # },
+        "CONFIG": {
+            "hosts": [env("REDIS_URL")],
+        },
     },
-}
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
 }
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': env("POSTGRES_DB"),
-#         'USER': env("POSTGRES_USER"),
-#         'PASSWORD': env("POSTGRES_PASSWORD"),
-#         'HOST': env("POSTGRES_HOST"),
-#         'PORT': env("POSTGRES_PORT")
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env("POSTGRES_DB"),
+        'USER': env("POSTGRES_USER"),
+        'PASSWORD': env("POSTGRES_PASSWORD"),
+        'HOST': env("POSTGRES_HOST"),
+        'PORT': env("POSTGRES_PORT")
+    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -178,7 +182,7 @@ SIMPLE_JWT = {
 
 DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE': True,
-    'SEND_ACTIVATION_EMAIL': True,
+    'SEND_ACTIVATION_EMAIL': False,
     'SET_PASSWORD_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
     'TOKEN_MODEL': None,
@@ -229,3 +233,5 @@ SERVER_EMAIL = env("EMAIL_HOST_USER")
 #         }
 #     }
 # }
+
+django.setup()

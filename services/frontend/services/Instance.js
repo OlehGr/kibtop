@@ -35,7 +35,7 @@ export const instance = axios.create({
     baseURL: `${BASE_URL}/v1/`,
 
     withCredentials: false,
-    headers: isDeploy ? {
+    headers: false ? {
         "Accept-Encoding": "*"
     } : {}
 })

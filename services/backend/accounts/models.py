@@ -13,7 +13,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField('email address', unique=True, null=True, blank=True)
     phone = models.CharField('phone number', max_length=30, null=True, blank=True)
     date_joined = models.DateTimeField('date joined', default=timezone.now)
-    is_active = models.BooleanField('active', default=False)
+    is_active = models.BooleanField('active', default=True)
     is_staff = models.BooleanField('staff', default=False)
     first_name = models.CharField(max_length=255, null=True, blank=True, default="Anonymous")
     upload_user = models.FileField(upload_to='user/', null=True, blank=True)

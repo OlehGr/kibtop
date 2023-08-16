@@ -35,6 +35,8 @@ class JoinAndLeave(WebsocketConsumer):
 class GroupConsumer(WebsocketConsumer):
     def connect(self):
         # Проверка валидности юзера
+        print('nen')
+        print(self.scope['user'])
         if isinstance(self.scope['user'], str) and self.scope['user'] == 'denied':
             return self.close()
 
@@ -57,6 +59,7 @@ class GroupConsumer(WebsocketConsumer):
                 "type": "connected_changes",
                 "message": self.user_id
             })
+
 
 
         self.accept()

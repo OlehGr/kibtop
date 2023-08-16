@@ -43,9 +43,9 @@ export const serializeCreateAdvertData = (data, category, lang) => {
         [`number_rooms`]: data.rooms,
         [`employment`]: data.employment,
         [`for_work_type`]: data.workType,
-        address: data.address,
-        city: data.city,
-        geocode: data.geocode,
+        address: 'Limassol', // Затычка из-за отсутствия доступа к гугл картам
+        city: 'Limassol', // Затычка из-за отсутствия доступа к гугл картам
+        geocode: '41.01 28.94', // Затычка из-за отсутствия доступа к гугл картам
         upload: data.photos[0],
         [`${category}_full_upload`]: [],
         user: data.userId,

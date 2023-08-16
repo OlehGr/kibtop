@@ -43,10 +43,10 @@ def get_online_user(group:Group) -> QuerySet:
 
 @database_sync_to_async
 def get_user(user_id):
-    try:
-        return CustomUser.objects.get(id=user_id)
-    except User.DoesNotExist:
-        return 'denied'
+    # try:
+    return CustomUser.objects.get(id=user_id)
+    # except User.DoesNotExist:
+    #     return 'denied'
 
 
 class AuthJwtMiddleware:
@@ -60,14 +60,12 @@ class AuthJwtMiddleware:
         # populated).
 
         # try:
-            try:
-                token = parse_qs(scope["query_string"].decode("utf8"))["token"][0]
-                token_data = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
-
-                print('шаг 3')
-                scope['user'] = await get_user(int(token_data['user_id']))
-            except:
-                scope['user'] = 'denied'
+        #     try:
+            token = parse_qs(scope["query_string"].decode("utf8"))["token"][0]
+            token_data = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
+            scope['user'] = await get_user(int(token_data['user_id']))
+            # except:
+            #     scope['user'] = 'denied'
         # except:
         #     print('Ошибка')
         #     scope['user'] = 'denied'

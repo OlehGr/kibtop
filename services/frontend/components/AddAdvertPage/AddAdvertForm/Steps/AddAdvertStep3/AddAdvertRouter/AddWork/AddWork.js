@@ -140,10 +140,10 @@ const AddWork = () => {
 
             <SubmitButtonContainer requiredFields={[
                                                     'title', 
-                                                    'address',
+                                                    // 'address',
                                                     'categoryName', 
-                                                    'city', 
-                                                    'geocode', 
+                                                    // 'city', 
+                                                    // 'geocode', 
                                                     'cost', 
                                                     'description', 
                                                     'currency', 
@@ -153,10 +153,10 @@ const AddWork = () => {
 
             <NextButtonContainer    requiredFields={[
                                                     'title', 
-                                                    'address',
+                                                    // 'address', // Затычка из-за отсутствия доступа к гугл картам
                                                     'categoryName', 
-                                                    'city', 
-                                                    'geocode', 
+                                                    // 'city', 
+                                                    // 'geocode', 
                                                     'cost', 
                                                     'description', 
                                                     'currency', 

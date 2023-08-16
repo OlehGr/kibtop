@@ -6,6 +6,7 @@ import { useLanguage } from "../../locales/hooks/useLanguage";
 import { AuthApi } from "../../services/AuthApi";
 import { ProfileApi } from "../../services/ProfileApi";
 import { getServerSideUser } from "../../services/tools/getServerSideUser/getServerSideUser";
+import { BASE_URL } from "../../services/Instance";
 
 const Profile = ({user, adverts}) => {
     const {t} = useLanguage()
@@ -29,9 +30,12 @@ const Profile = ({user, adverts}) => {
     );
 }
 
+
 export async function getServerSideProps({req, res, locale}) {
 
     const user = await getServerSideUser(req.cookies)
+
+
     if(!user) {
         return {
             redirect: {
